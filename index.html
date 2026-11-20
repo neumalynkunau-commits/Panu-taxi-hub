@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#d92332">
+  <title>PANU TAXI HUB | Madang PNG</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+      color: #171717;
+    }
+
+    header {
+      background: #111111;
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #facc15;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #facc15;
+    }
+
+    .hero {
+      background: linear-gradient(120deg, #b91c2b, #e52b39);
+      color: white;
+      padding: 65px 7%;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 50px);
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: #facc15;
+    }
+
+    .hero p {
+      font-size: 17px;
+      margin-bottom: 25px;
+    }
+
+    .hero button {
+      background: #facc15;
+      color: #111;
+      border: none;
+      padding: 14px 27px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .booking {
+      background: white;
+      max-width: 900px;
+      margin: -25px auto 35px;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px #00000015;
+      position: relative;
+    }
+
+    .booking h2 {
+      margin-bottom: 18px;
+    }
+
+    .booking-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 12px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .search-btn {
+      background: #d92332;
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .section {
+      padding: 30px 7%;
+    }
+
+    .section h2 {
+      font-size: 27px;
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      color: #666;
+      margin-bottom: 22px;
+    }
+
+    .taxi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .taxi-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px #00000010;
+    }
+
+    .taxi-image {
+      height: 150px;
+      background: #222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #facc15;
+      font-size: 48px;
+    }
+
+    .taxi-info {
+      padding: 18px;
+    }
+
+    .taxi-info h3 {
+      margin-bottom: 9px;
+    }
+
+    .taxi-info p {
+      font-size: 13px;
+      margin-bottom: 9px;
+    }
+
+    .status {
+      color: #16833c;
+      font-weight: bold;
+      font-size: 13px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .book-btn {
+      width: 100%;
+      background: #111;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .book-btn:hover {
+      background: #d92332;
+    }
+
+    .map-section {
+      margin: 30px 7%;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .map-placeholder {
+      background: #eeeeee;
+      border: 2px dashed #bbb;
+      padding: 55px 15px;
+      border-radius: 8px;
+      color: #555;
+      margin-top: 18px;
+    }
+
+    .join {
+      background: #111;
+      color: white;
+      padding: 45px 7%;
+      text-align: center;
+    }
+
+    .join h2 {
+      color: #facc15;
+      margin-bottom: 12px;
+    }
+
+    .join button {
+      margin-top: 20px;
+      background: #d92332;
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #080808;
+      color: #ccc;
+      text-align: center;
+      padding: 22px;
+      font-size: 13px;
+    }
+
+    @media(max-width: 700px) {
+      header {
+        justify-content: center;
+        text-align: center;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+
+      .booking {
+        margin: 15px;
+      }
+
+      .booking-fields {
+        grid-template-columns: 1fr;
+      }
+
+      .taxi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">🚕 PANU <span>TAXI HUB</span></div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#taxis">Find Taxis</a>
+      <a href="#map">Map</a>
+      <a href="#drivers">Join Us</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h1>Your Ride. <span>Your Choice.</span></h1>
+    <p>Find, compare and book trusted taxis around Madang, Papua New Guinea.</p>
+    <button onclick="document.getElementById('taxis').scrollIntoView({behavior:'smooth'})">
+      FIND A TAXI 🚕
+    </button>
+  </section>
+
+  <section class="booking">
+    <h2>Where would you like to go?</h2>
+
+    <div class="booking-fields">
+      <input id="pickup" type="text" placeholder="Enter pickup location">
+      <input id="destination" type="text" placeholder="Enter destination">
+      <button class="search-btn" onclick="searchTaxis()">Search Taxis</button>
+    </div>
+  </section>
+
+  <section class="section" id="taxis">
+    <h2>Explore Our Taxis</h2>
+    <p>Browse taxi operators and choose the ride that suits you.</p>
+
+    <div class="taxi-grid">
+
+      <div class="taxi-card">
+        <div class="taxi-image">🚕</div>
+        <div class="taxi-info">
+          <h3>Taxi Listing 001</h3>
+          <p>Vehicle: Sedan</p>
+          <p>Capacity: 4 passengers</p>
+          <p>Fare: Set by operator</p>
+          <span class="status">● Sample listing</span>
+          <button class="book-btn" onclick="bookTaxi('Taxi Listing 001')">Book This Taxi</button>
+        </div>
+      </div>
+
+      <div class="taxi-card">
+        <div class="taxi-image">🚖</div>
+        <div class="taxi-info">
+          <h3>Taxi Listing 002</h3>
+          <p>Vehicle: SUV</p>
+          <p>Capacity: 5 passengers</p>
+          <p>Fare: Set by operator</p>
+          <span class="status">● Sample listing</span>
+          <button class="book-btn" onclick="bookTaxi('Taxi Listing 002')">Book This Taxi</button>
+        </div>
+      </div>
+
+      <div class="taxi-card">
+        <div class="taxi-image">🚐</div>
+        <div class="taxi-info">
+          <h3>Taxi Listing 003</h3>
+          <p>Vehicle: Minivan</p>
+          <p>Capacity: 7 passengers</p>
+          <p>Fare: Set by operator</p>
+          <span class="status">● Sample listing</span>
+          <button class="book-btn" onclick="bookTaxi('Taxi Listing 003')">Book This Taxi</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="map-section" id="map">
+    <h2>Explore Taxis Around Madang</h2>
+    <p>Our interactive taxi map will be integrated here.</p>
+
+    <div class="map-placeholder">
+      📍
+      <h3>Madang Taxi Map</h3>
+      <p>Map integration coming soon.</p>
+    </div>
+  </section>
+
+  <section class="join" id="drivers">
+    <h2>Are You a Taxi Operator?</h2>
+    <p>Register your taxi and connect with customers through PANU TAXI HUB.</p>
+    <button onclick="alert('Taxi operator registration will be available soon!')">
+      Register Your Taxi
+    </button>
+  </section>
+
+  <footer>
+    <p>© 2026 PANU TAXI HUB</p>
+    <p>Your Ride. Your Choice. | Madang, Papua New Guinea 🇵🇬</p>
+  </footer>
+
+  <script>
+    function searchTaxis() {
+      const pickup = document.getElementById('pickup').value.trim();
+      const destination = document.getElementById('destination').value.trim();
+
+      if (!pickup || !destination) {
+        alert('Please enter your pickup location and destination.');
+        return;
+      }
+
+      document.getElementById('taxis').scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+
+    function bookTaxi(taxi) {
+      alert('You selected ' + taxi +
+        '. The full booking system will be connected in a later development stage.');
+    }
+  </script>
+
+</body>
+</html>
