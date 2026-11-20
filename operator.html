@@ -293,5 +293,22 @@ document.getElementById("operatorForm").addEventListener("submit", function(even
 });
 </script>
 
+<!-- Supabase JavaScript Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // PANU TAXI HUB - Supabase Connection
+
+  const SUPABASE_URL = "https://sumpfsmrmffrligabdvh.supabase.co";
+
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_evN37h-UY6r6ekwLaO85Xw_ryFKsv_l";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  console.log("PANU TAXI HUB Supabase connection initialized!");
+</script>
 </body>
 </html>
