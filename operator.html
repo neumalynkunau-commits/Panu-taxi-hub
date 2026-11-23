@@ -295,12 +295,99 @@ SUBMIT REGISTRATION
 <p>Your Ride. Your Choice. | Madang, Papua New Guinea 🇵🇬</p>
 </footer>
 
-<script>
-document.getElementById("operatorForm").addEventListener("submit", function(event) {
+document.getElementById("operatorForm").addEventListener("submit", async function(event) {
   event.preventDefault();
-  alert("Registration form design completed! Database connection will be activated in the next development stage.");
+
+  const form = event.target;
+  const data = new FormData(form);
+
+  const submitButton = form.querySelector(".submit-btn");
+  submitButton.disabled = true;
+  submitButton.textContent = "Submitting...";
+
+  try {
+    // 1. Create operator account
+    const { data: account, error: signupError } =
+      await supabaseClient.auth.signUp({
+        email: data.get("email"),
+        password: data.get("password"),
+        options: {
+          data: {
+            full_name: data.get("owner_name")
+          }
+        }
+      });
+
+    if (signupError) throw signupError;
+
+    if (!account.user) {
+      throw new Error("Account creation could not be confirmed.");
+    }
+
+    // 2. Save taxi business
+    const { data: operator, error: operatorError } =
+      await supabaseClient
+        .from("taxi_operators")
+        .insert({
+          user_id: account.user.id,
+          business_name: data.get("business_name"),
+          owner_name: data.get("owner_name"),
+          phone: data.get("phone"),
+          location: data.get("location"),
+          status: "pending"
+        })
+        .select()
+        .single();
+
+    if (operatorError) throw operatorError;
+
+    // 3. Save driver information
+    const { error: driverError } =
+      await supabaseClient
+        .from("drivers")
+        .insert({
+          operator_id: operator.id,
+          full_name: data.get("driver_name"),
+          phone: data.get("driver_phone"),
+          licence_number: data.get("licence_number"),
+          verification_status: "pending"
+        });
+
+    if (driverError) throw driverError;
+
+    // 4. Save vehicle information
+    const { error: vehicleError } =
+      await supabaseClient
+        .from("vehicles")
+        .insert({
+          operator_id: operator.id,
+          vehicle_name: data.get("vehicle_name"),
+          registration_number: data.get("registration_number"),
+          colour: data.get("colour"),
+          vehicle_type: data.get("vehicle_type"),
+          passenger_capacity: Number(data.get("passenger_capacity")),
+          approval_status: "pending",
+          availability: "offline"
+        });
+
+    if (vehicleError) throw vehicleError;
+
+    alert(
+      "Registration submitted successfully! " +
+      "Your PANU TAXI HUB application is awaiting administrator approval."
+    );
+
+    form.reset();
+
+  } catch (error) {
+    console.error("Registration error:", error);
+    alert("Registration failed: " + error.message);
+  }
+
+  submitButton.disabled = false;
+  submitButton.textContent = "SUBMIT REGISTRATION";
 });
-</script>
+
 
 <!-- Supabase JavaScript Library -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
